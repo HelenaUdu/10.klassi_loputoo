@@ -1,4 +1,6 @@
 
+# lihtsalt vaatan kas saan siit teha midagi
+
 from cgitb import text
 from msilib.schema import CheckBox
 from kivy.app import App
