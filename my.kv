@@ -1,15 +1,24 @@
 #:kivy 2.1.0
 
-<MyGrid>:
-    col: 5
-    row_force_default: False
-    row_default_height: 40
-    width: 20
+<MyGrid>
+    GridLayout:
+        cols:1
+        size: root.width - 100, root.height - 100
+        pos: 50, 50
 
-    Label: 
-        text:"Päev"
-        size_hint_y: None
-    TextInput: 
-        multiline: False
+        GridLayout:
+            cols:4
+            # Nimi
+            Label:
+                text: "Nimi"
+            TextInput:
+                multiline: False
+            # Värv
+            Label:
+                text: "Värv"
+            TextInput:
+                multiline: False
 
-
+             
+        Label:
+            text: "Telg"
