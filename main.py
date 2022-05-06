@@ -9,35 +9,48 @@ from kivy.uix.button import Button
 
 list = []
 
-class MyGridLayout(GridLayout):
+class MyGrid(GridLayout):
     def __init__(self, **kwargs):
-        super(MyGridLayout, self).__init__(**kwargs)
-        self.cols = 2
-# Päeva sisestamise koht
-        self.add_widget(Label(text="Päev"))
+        
+        super(MyGrid, self).__init__(**kwargs)
+        self.cols = 5
+        self.rows = 2
+        self.row_force_default = True
+        self.row_default_height = 40
+        self.width = 20
+
+        # Päeva sisestamise koht
+        self.add_widget(Label(text="Päev", size_hint_y = None))
         self.paev = TextInput(multiline=False)
         self.add_widget(self.paev)
-# Kuu sisestamise koht
-        self.add_widget(Label(text="Kuu"))
+
+        # Kuu sisestamise koht
+        self.add_widget(Label(text="Kuu", size_hint_y = None))
         self.kuu = TextInput(multiline=False)
         self.add_widget(self.kuu)
-# Aasta sisestamise koht
-        self.add_widget(Label(text="Aasta"))
+
+        # Aasta sisestamise koht
+        self.add_widget(Label(text="Aasta", size_hint_y = None))
         self.aasta = TextInput(multiline=False)
         self.add_widget(self.aasta)
-# Nimi sisestamise koht
-        self.add_widget(Label(text="Nimi"))
+
+        # Nimi sisestamise koht
+        self.add_widget(Label(text="Nimi", size_hint_x = None))
         self.nimi = TextInput(multiline=False)
         self.add_widget(self.nimi)
-# Kirjeldus sisestamise koht
-        self.add_widget(Label(text="Kirjeldus"))
+
+        # Kirjeldus sisestamise koht
+        self.add_widget(Label(text="Kirjeldus", size_hint_x = None))
         self.kirjeldus = TextInput()
         self.add_widget(self.kirjeldus)
+
+
 #EMA checkbox
 
 # Värvi valiku koht
 
 # Lisa nupp
+"""
         self.lisa = Button(text="Lisa", font_size=32)
         self.lisa.bind(on_press=self.press()) 
         self.add_widget(self.lisa)
@@ -51,7 +64,7 @@ class MyGridLayout(GridLayout):
         kuu = self.kuu.text
         aasta = self.aasta.text
 
-        
+"""        
 
 
 
@@ -59,7 +72,7 @@ class MyGridLayout(GridLayout):
 class TheLabApp(App):
 
     def build(self):
-        return MyGridLayout()
+        return MyGrid()
 
 if __name__ == '__main__':
     TheLabApp().run()
