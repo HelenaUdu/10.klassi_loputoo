@@ -1,40 +1,15 @@
 #:kivy 2.1.0
 
-<MyApp>:
-    MyGrid: 
-        Gridlayout:
-            col: 5
-            row_force_default: False
-            row_default_height: 40
-            width: 20
+<MyGrid>:
+    col: 5
+    row_force_default: False
+    row_default_height: 40
+    width: 20
 
-            Label: 
-                text:"Päev"
-                size_hint_y: None
-            TextInput: 
-                multiline: False
+    Label: 
+        text:"Päev"
+        size_hint_y: None
+    TextInput: 
+        multiline: False
 
-            Label: 
-                text:"Kuu"
-                size_hint_y: None
-            TextInput: 
-                multiline: False
-
-            Label:
-                text: "Aasta"
-                size_hint_y: None
-            TextInput:
-                multiline: False
-
-            Label:
-                text:"Nimi"
-                size_hint_y: None
-            TextInput:
-                multiline: False
-
-            Label: 
-                text: "Kirjeldus"
-                size_hint_y: None
-            TextInput:
-                multiline: True
 
