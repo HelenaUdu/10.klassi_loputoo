@@ -13,8 +13,7 @@ list = []
 
 class MyGrid(GridLayout):
     def __init__(self, **kwargs):
-        
-        super(MyGrid, self).__init__(**kwargs)
+        """super(MyGrid, self).__init__(**kwargs)
         self.cols = 5
         self.rows = 2
         self.row_force_default = True
@@ -44,7 +43,7 @@ class MyGrid(GridLayout):
         # Kirjeldus sisestamise koht
         self.add_widget(Label(text="Kirjeldus", size_hint_x = None))
         self.kirjeldus = TextInput()
-        self.add_widget(self.kirjeldus)
+        self.add_widget(self.kirjeldus)"""
 
 
 #EMA checkbox
@@ -69,14 +68,12 @@ class MyGrid(GridLayout):
 """        
 
 
-
-
-class TheLabApp(App):
+class MyApp(App):
 
     def build(self):
         return MyGrid()
 
 if __name__ == '__main__':
-    TheLabApp().run()
+    MyApp().run()
 
 
