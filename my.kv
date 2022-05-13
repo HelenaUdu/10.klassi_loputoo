@@ -1,43 +1,94 @@
 #:kivy 2.1.0
 
 <MyGrid>
+
+    # nimi: nimi
+    # aasta: aasta
+    # kuu: kuu
+    # paev: paev
+    # kirjeldus: kirjeldus
+
+    
     GridLayout:
         cols:1
         size: root.width - 100, root.height - 100
         pos: 50, 50
 
-        GridLayout:
-            cols:4
+        # 2
+        StackLayout:
+            orientation: 'lr-tb'
             # Nimi
             Label:
                 text: "Nimi"
+                size_hint:(.1, .125)
             TextInput:
+                text: 'nimi'
+                id: nimi 
                 multiline: False
-            # Värv
-            Label:
-                text: "Värv"
-            ColorPicker:
-            # eKr
-            Label:
-                text: "eKr"
-            CheckBox:
-            # aasta
+                size_hint:(.15, .125)
+            
             Label:
                 text: "Aasta"
+                size_hint:(.1, .167)
             TextInput:
+                size_hint:(.15, .167)
+                text: 'aasta'
+                id: aasta 
                 multiline: False
+            
+            Label:
+                size_hint:(.3, .2)
+                text: "Kirjeldus"
+
+            Button:
+                size_hint:(.2, .25)
+                text:"Lisa"
+                on_press: root.lisanupp
+
+            # eKr
+            Label:
+                size_hint:(.1, .125)
+                text: "eKr"
+            CheckBox:
+                size_hint:(.15, .125)
             # kuu
             Label:
                 text: "Kuu"
+                size_hint:(.1, .166)
             TextInput:
+                text: 'kuu'
+                id: kuu 
                 multiline: False
-            # paev
-            Label:
-                text: "Nimi"
-            TextInput:
-                multiline: False
-                
+                size_hint:(.15, .167)
 
-             
+            TextInput:
+                text: 'kirjeldus'
+                id: kirjeldus
+                multiline: True
+                size_hint:(.3, .29999)           
+            # Värv
+            ColorPicker:
+                size_hint:(.25, .25)
+            Line:
+                width: 2
+
+            Label:
+                text: "Päev"
+                size_hint:(.1, .167)
+
+            TextInput:
+                text: 'paev'
+                id: paev 
+                multiline: False
+                size_hint:(.15, .167)
+
+            Label:
+                size_hint: (.3, .00001)
+
+            Button:
+                text: "Minimize"
+                size_hint:(.2, .25)
+     
         Label:
             text: "Telg"
+
