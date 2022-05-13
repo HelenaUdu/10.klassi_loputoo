@@ -9,9 +9,20 @@ from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.uix.stacklayout import StackLayout
-
+from kivy.graphics import Line, Color, Rectangle
+from kivy.core.window import Window
 
 class MyGrid(Widget):
+
+    def __init__(self, **kwargs):
+        super(MyGrid, self).__init__(**kwargs)
+        with self.canvas.before:
+            Color(0, 0, 0, mode='rgb')
+            print(self.height)
+        with self.canvas:
+            self.line = Line(points=(0, Window.height/4, Window.width, Window.height/4))
+        with self.canvas.after:
+            pass
     """
     nimi = ObjectProperty(None)
     kirjeldus = ObjectProperty(None)
@@ -21,9 +32,9 @@ class MyGrid(Widget):
 
     def lisanupp(self):
         pass
-"""
+    """
 
-class Telg(Widget):
+class Telg():
     pass
 
 

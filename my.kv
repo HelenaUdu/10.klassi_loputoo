@@ -1,12 +1,13 @@
 #:kivy 2.1.0
 
-<MyGrid>
+<MyGrid>:
 
     # nimi: nimi
     # aasta: aasta
     # kuu: kuu
     # paev: paev
     # kirjeldus: kirjeldus
+    
 
     
     GridLayout:
@@ -69,8 +70,6 @@
             # Värv
             ColorPicker:
                 size_hint:(.25, .25)
-            Line:
-                width: 2
 
             Label:
                 text: "Päev"
@@ -91,4 +90,7 @@
      
         Label:
             text: "Telg"
+
+
+
 
