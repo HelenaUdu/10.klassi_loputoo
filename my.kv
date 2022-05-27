@@ -23,7 +23,7 @@
                 text: "Nimi"
                 size_hint:(.1, .125)
             TextInput:
-                text: 'nimi'
+                text: ''
                 id: nimi 
                 multiline: False
                 size_hint:(.15, .125)
@@ -33,7 +33,7 @@
                 size_hint:(.1, .167)
             TextInput:
                 size_hint:(.15, .167)
-                text: 'aasta'
+                text: ''
                 id: aasta 
                 multiline: False
             
@@ -44,31 +44,33 @@
             Button:
                 size_hint:(.2, .25)
                 text:"Lisa"
-                on_press: root.lisanupp
+                # on_press: root.lisanupp
 
             # eKr
             Label:
                 size_hint:(.1, .125)
                 text: "eKr"
             CheckBox:
+                id: ekr
                 size_hint:(.15, .125)
             # kuu
             Label:
                 text: "Kuu"
                 size_hint:(.1, .166)
             TextInput:
-                text: 'kuu'
+                text: ''
                 id: kuu 
                 multiline: False
                 size_hint:(.15, .167)
 
             TextInput:
-                text: 'kirjeldus'
+                text: ''
                 id: kirjeldus
                 multiline: True
                 size_hint:(.3, .29999)           
             # Värv
             ColorPicker:
+                id: varv
                 size_hint:(.25, .25)
 
             Label:
@@ -76,7 +78,7 @@
                 size_hint:(.1, .167)
 
             TextInput:
-                text: 'paev'
+                text: ''
                 id: paev 
                 multiline: False
                 size_hint:(.15, .167)
@@ -90,7 +92,6 @@
      
         Label:
             text: "Telg"
-
 
 
 
