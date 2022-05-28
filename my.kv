@@ -44,7 +44,7 @@
             Button:
                 size_hint:(.2, .25)
                 text:"Lisa"
-                # on_press: root.lisanupp
+                on_press: app.lisa_event()
 
             # eKr
             Label:
@@ -87,8 +87,9 @@
                 size_hint: (.3, .00001)
 
             Button:
-                text: "Minimize"
+                text: "Kustuta"
                 size_hint:(.2, .25)
+                on_press: app.kustuta_event()
      
         Label:
             text: "Telg"

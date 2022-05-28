@@ -1,5 +1,3 @@
-
-
 from cgitb import text
 from msilib.schema import CheckBox
 from kivy.app import App
@@ -21,50 +19,69 @@ class MyGrid(Widget):
         super(MyGrid, self).__init__(**kwargs)
         with self.canvas.before:
             Color(0, 0, 0, mode='rgb')
-            print(self.height)
+            # print(self.height)
         with self.canvas:
             self.line = Line(points=(0, Window.height/4, Window.width, Window.height/4))
         with self.canvas.after:
             pass
-    """
-    nimi = ObjectProperty(None)
-    kirjeldus = ObjectProperty(None)
-    aasta = ObjectProperty(None)
-    kuu = ObjectProperty(None)
-    paev = ObjectProperty(None)
 
-    def lisanupp(self):
-        pass
-    """
 
 class Telg():
     pass
+
+
 
 class MyApp(App):
     def build(self):
         return MyGrid()
     
     filename = 'myfile.json'
+    n = 1 
 
     def on_start(self): 
-        self.read_data('firstelement')
+        self.read_data('lastevent')
 
     
     def on_stop(self):
         self.save_data()
 
+    # kustutab praeguse evendi
+    def kustuta_event(self):
+        fhand = open(self.filename)
+        data = json.load(fhand)
+        data.pop(self.currentevent)
+        fhand.close()
+        fhand = open(self.filename, 'w')
+        json.dump(data, fhand, indent=2)
+        fhand.close()
+        self.read_data('lastevent')
 
+    # lisab uue eventi
+    def lisa_event(self):
+        self.save_data()
+        fhand = open(self.filename)
+        data = json.load(fhand)
+        event = 'template' + str(self.n)
+        self.n += 1
+        data[event] = data['template']
+        fhand.close()
+        fhand = open(self.filename, 'w')
+        print(data)
+        json.dump(data, fhand, indent=2)
+        fhand.close()
+        self.read_data(event)
+        
 
 
     # kirjutab andmeid json faili, uuendab praeguse ajatelje nime
     def save_data(self):
-        # print(self.root.ids.mytextinput.text)
         fhand = open(self.filename)
         data = json.load(fhand)
         event = self.root.ids.nimi.text
-        print(self.currentevent)
-        print(data)
-        print(self.root.ids.varv.color)
+        # print(self.currentevent)
+        # print(data)
+        # print(self.root.ids.varv.color)
+
         data[event] = data.pop(self.currentevent)
 
         data[event]['aasta'] = self.root.ids.aasta.text
@@ -73,21 +90,26 @@ class MyApp(App):
         data[event]['paev'] = self.root.ids.paev.text
         data[event]['kirjeldus'] = self.root.ids.kirjeldus.text
         data[event]['varv'] = self.root.ids.varv.color
+        # print(data)
         fhand = open(self.filename, 'w')
+        # print(data)
         json.dump(data, fhand, indent=2)
+        fhand.close()
         self.currentevent = event
+
 
 
     # Loeb andmeid json failist
     def read_data(self, event):
         fhand = open(self.filename)
         data = json.load(fhand)
-        if event == 'firstelement':
+        if event == 'lastevent':
             for i in data:
                 event = i
-                break
-        print(data)
-        print(self.root.ids.varv.color)
+
+        # print(data)
+
+        # print(self.root.ids.varv.color)
         self.root.ids.nimi.text = event
         self.root.ids.aasta.text = data[event]['aasta']
         self.root.ids.ekr.active = data[event]['ekr']
@@ -96,7 +118,7 @@ class MyApp(App):
         self.root.ids.kirjeldus.text = data[event]['kirjeldus']
         self.root.ids.varv.color = data[event]['varv']
         self.currentevent = event
-
+        # print(self.currentevent)
 
 
 
