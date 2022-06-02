@@ -8,11 +8,9 @@
     # paev: paev
     # kirjeldus: kirjeldus
     
-
-    
     GridLayout:
         cols:1
-        size: root.width - 100, root.height - 100
+        size: root.width-50, root.height-80
         pos: 50, 50
 
         # 2
@@ -23,7 +21,7 @@
                 text: "Nimi"
                 size_hint:(.1, .125)
             TextInput:
-                text: 'nimi'
+                text: ''
                 id: nimi 
                 multiline: False
                 size_hint:(.15, .125)
@@ -33,7 +31,7 @@
                 size_hint:(.1, .167)
             TextInput:
                 size_hint:(.15, .167)
-                text: 'aasta'
+                text: ''
                 id: aasta 
                 multiline: False
             
@@ -51,24 +49,26 @@
                 size_hint:(.1, .125)
                 text: "eKr"
             CheckBox:
+                id: ekr
                 size_hint:(.15, .125)
             # kuu
             Label:
                 text: "Kuu"
                 size_hint:(.1, .166)
             TextInput:
-                text: 'kuu'
+                text: ''
                 id: kuu 
                 multiline: False
                 size_hint:(.15, .167)
 
             TextInput:
-                text: 'kirjeldus'
+                text: ''
                 id: kirjeldus
                 multiline: True
                 size_hint:(.3, .29999)           
             # Värv
             ColorPicker:
+                id: varv
                 size_hint:(.25, .25)
 
             Label:
@@ -76,7 +76,7 @@
                 size_hint:(.1, .167)
 
             TextInput:
-                text: 'paev'
+                text: ''
                 id: paev 
                 multiline: False
                 size_hint:(.15, .167)
@@ -89,7 +89,9 @@
                 size_hint:(.2, .25)
      
         Label:
-            text: "Telg"
+            canvas:
+                Line: 
+                    points: 0, self.center_y, self.right, self.center_y
 
 
 
