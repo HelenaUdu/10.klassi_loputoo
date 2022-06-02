@@ -1,4 +1,30 @@
 {
+  "template": {
+    "aasta": "",
+    "ekr": false,
+    "kuu": "",
+    "paev": "",
+    "kirjeldus": "",
+    "varv": [
+      1.0,
+      1.0,
+      1.0,
+      1
+    ]
+  },
+  "baba2": {
+    "aasta": "555",
+    "ekr": true,
+    "kuu": "kuu1",
+    "paev": "paev1",
+    "kirjeldus": "mina olen baba1",
+    "varv": [
+      0.4,
+      0.775,
+      1.0,
+      1
+    ]
+  },
   "baba1": {
     "aasta": "555",
     "ekr": true,
@@ -6,8 +32,8 @@
     "paev": "paev1",
     "kirjeldus": "mina olen baba1",
     "varv": [
-      0.5,
-      1.0,
+      0.4,
+      0.775,
       1.0,
       1
     ]
