@@ -18,8 +18,29 @@ class MyGrid(Widget):
     def __init__(self, **kwargs):
         super(MyGrid, self).__init__(**kwargs)
 
-    def lisanupp(self, instance):
-        pass
+    def lisanupp(self):
+        # Paneme pärast need lisanupp ja lisa_event kokku
+        # võtab myfile.jsonist kuupaevad(formaat aasta+kuu+päev nt 18840117) ja sordib need bubblesort algoritmiga
+        # Teised andmed nimi, kirjeldus jne võiksid olla listis, mille sees on dictionaryd või teised listid, leppime tunnis kokku
+        def bubblesort(järjend, pikkus):
+            for i in range(pikkus):
+                for j in range(pikkus -1):
+                    if järjend[j] > järjend[j+1]:
+                        järjend[j], järjend[j+1] = järjend[j+1], järjend[j]
+            return järjend
+        kuupaevad = [18840117, 20050111, 20200409]
+        pikkus = len(kuupaevad)
+        bubblesort(kuupaevad, pikkus)
+        n = 1 # mitmes event on ajateljel
+        for i in kuupaevad:
+            x = self.left/pikkus*n
+            y = self.center_y/2*3
+            button = Button(pos =(x, y), size =(30, 30)) # Praegu on size suvakas ja buttonite variablei jaoks tuleb mingi nimetamis süsteem välja mõelda
+            n += 1
+            
+            
+
+    
 
 
 
