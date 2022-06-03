@@ -2,17 +2,10 @@
 
 <MyGrid>:
 
-    # nimi: nimi
-    # aasta: aasta
-    # kuu: kuu
-    # paev: paev
-    # kirjeldus: kirjeldus
-    
-
     
     GridLayout:
         cols:1
-        size: root.width - 100, root.height - 100
+        size: root.width-50, root.height-80
         pos: 50, 50
 
         # 2
@@ -26,6 +19,7 @@
                 text: ''
                 id: nimi 
                 multiline: False
+                hint_text: "Nimi"
                 size_hint:(.15, .125)
             
             Label:
@@ -34,6 +28,7 @@
             TextInput:
                 size_hint:(.15, .167)
                 text: ''
+                hint_text: "Aasta"
                 id: aasta 
                 multiline: False
             
@@ -58,7 +53,8 @@
                 text: "Kuu"
                 size_hint:(.1, .166)
             TextInput:
-                text: ''
+                text: '01'
+                hint_text: "Kuu"
                 id: kuu 
                 multiline: False
                 size_hint:(.15, .167)
@@ -66,6 +62,7 @@
             TextInput:
                 text: ''
                 id: kirjeldus
+                hint_text: "Kirjeldus"
                 multiline: True
                 size_hint:(.3, .29999)           
             # Värv
@@ -78,7 +75,8 @@
                 size_hint:(.1, .167)
 
             TextInput:
-                text: ''
+                text: '01'
+                hint_text: "Päev"
                 id: paev 
                 multiline: False
                 size_hint:(.15, .167)
@@ -92,7 +90,6 @@
                 on_press: app.kustuta_event()
      
         Label:
-            text: "Telg"
-
-
-
+            canvas:
+                Line: 
+                    points: 0, self.center_y, self.right, self.center_y
