@@ -20,6 +20,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.stacklayout import StackLayout
 from kivy.graphics import Line, Color
 from kivy.core.window import Window
+from kivy.uix.popup import Popup
 import json
 
 import json
@@ -29,7 +30,7 @@ class MyGrid(Widget):
         super(MyGrid, self).__init__(**kwargs)
     
     def piira_kuupaev(self):
-        self.input_filter = 'int'
+        pass
 
     def lisanupp(self):
         # Paneme pärast need lisanupp ja lisa_event kokku
@@ -55,14 +56,14 @@ class MyGrid(Widget):
             print(kuupaev)
             kuupaevad.append(kuupaev)
 
+        
         fhand.close()
-
-        # kuupaevad = [18840117, 20050111, 20200409]
         pikkus = len(kuupaevad)
         bubblesort(kuupaevad, pikkus)
+
         n = 1 # mitmes event on ajateljel
         for i in kuupaevad:
-            x = 0/pikkus*n
+            x = Window.width/pikkus*n
             y = Window.height/4*3
             button = Button(pos =(x, y), size =(30, 30)) # Praegu on size suvakas ja buttonite variablei jaoks tuleb mingi nimetamis süsteem välja mõelda
             self.add_widget(button)
@@ -77,14 +78,39 @@ class MyApp(App):
     
     filename = 'myfile.json'
     n = 1 
-    list = []
+    paevadlist = []
 
     def on_start(self): 
         self.read_data('lastevent')
 
+
     
     def on_stop(self):
+        if self.piira_kuupaev() == 'VIGA':
+            return
         self.save_data()
+
+    def piira_kuupaev(self):
+        for num in range(1, 32):
+            if num < 10:
+                self.paevadlist.append('0' + str(num))
+            else:
+                self.paevadlist.append(str(num))
+
+        try:
+            int(self.root.ids.aasta.text)
+            int(self.root.ids.kuu.text)
+            int(self.root.ids.paev.text)
+        except ValueError:
+            popup = Popup(title='VIGA', content=Label(text='Kuupäevades pole vaid numbrid!'))
+            popup.open()
+            return 'VIGA'
+        if self.root.ids.kuu.text not in range(1,13) or self.root.ids.paev.text not in range(1,32):
+            popup = Popup(title='VIGA', content=Label(text='Kuupäevad valed'))
+            popup.open()
+            return 'VIGA'
+
+        
 
     # kustutab praeguse evendi
     def kustuta_event(self):
@@ -99,6 +125,8 @@ class MyApp(App):
 
     # lisab uue eventi
     def lisa_event(self):
+        if self.piira_kuupaev() == 'VIGA':
+            return
         self.save_data()
         fhand = open(self.filename)
         data = json.load(fhand)
@@ -118,6 +146,7 @@ class MyApp(App):
     def save_data(self):
         fhand = open(self.filename)
         data = json.load(fhand)
+
         event = self.root.ids.nimi.text
         # print(self.currentevent)
         # print(data)
