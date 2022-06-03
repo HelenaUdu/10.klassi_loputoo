@@ -1,3 +1,17 @@
+"""
+[] restrictida textinput väljad(numbrid vahemikus 1-12 kuul, päevadel 1-31, aastal number)
+
+
+
+
+"""
+
+
+
+
+
+
+
 from cgitb import text
 from msilib.schema import CheckBox
 from kivy.app import App
@@ -17,6 +31,9 @@ import json
 class MyGrid(Widget):
     def __init__(self, **kwargs):
         super(MyGrid, self).__init__(**kwargs)
+    
+    def piira_kuupaev(self):
+        self.input_filter = 'int'
 
     def lisanupp(self):
         # Paneme pärast need lisanupp ja lisa_event kokku
@@ -36,13 +53,9 @@ class MyGrid(Widget):
             x = self.left/pikkus*n
             y = self.center_y/2*3
             button = Button(pos =(x, y), size =(30, 30)) # Praegu on size suvakas ja buttonite variablei jaoks tuleb mingi nimetamis süsteem välja mõelda
+            # self.ids[sõnastik[nimi]] = button
             n += 1
             
-            
-
-    
-
-
 
 
 class MyApp(App):
@@ -84,7 +97,7 @@ class MyApp(App):
         json.dump(data, fhand, indent=2)
         fhand.close()
         self.read_data(event)
-        
+        MyGrid().lisanupp()
 
 
     # kirjutab andmeid json faili, uuendab praeguse ajatelje nime
