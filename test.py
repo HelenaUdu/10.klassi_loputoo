@@ -1,3 +1,13 @@
+"""
+[] restrictida textinput väljad(numbrid vahemikus 1-12 kuul, päevadel 1-31, aastal number)
+"""
+
+
+
+
+
+
+
 from cgitb import text
 from msilib.schema import CheckBox
 from kivy.app import App
@@ -17,11 +27,48 @@ import json
 class MyGrid(Widget):
     def __init__(self, **kwargs):
         super(MyGrid, self).__init__(**kwargs)
+    
+    def piira_kuupaev(self):
+        self.input_filter = 'int'
 
-    def lisanupp(self, instance):
-        pass
+    def lisanupp(self):
+        # Paneme pärast need lisanupp ja lisa_event kokku
+        # võtab myfile.jsonist kuupaevad(formaat aasta+kuu+päev nt 18840117) ja sordib need bubblesort algoritmiga
+        # Teised andmed nimi, kirjeldus jne võiksid olla listis, mille sees on dictionaryd või teised listid, leppime tunnis kokku
+        def bubblesort(järjend, pikkus):
+            for i in range(pikkus):
+                for j in range(pikkus -1):
+                    if järjend[j] > järjend[j+1]:
+                        järjend[j], järjend[j+1] = järjend[j+1], järjend[j]
+         
+            return järjend
+        
+        # võtab myfile.jsonist kuupaevad(formaat aasta+kuu+päev nt 18840117) ja sordib need bubblesort algoritmiga
+        kuupaevad = []
 
+        fhand = open(MyApp.filename)
+        data = json.load(fhand)
+        for event in data:
+            print(event)
+            print(data[event]['aasta'])
+            kuupaev = int(data[event]['aasta'] + data[event]['kuu'] + data[event]['paev'])
+            print(kuupaev)
+            kuupaevad.append(kuupaev)
 
+        fhand.close()
+
+        # kuupaevad = [18840117, 20050111, 20200409]
+        pikkus = len(kuupaevad)
+        bubblesort(kuupaevad, pikkus)
+        n = 1 # mitmes event on ajateljel
+        for i in kuupaevad:
+            x = 0/pikkus*n
+            y = Window.height/4*3
+            button = Button(pos =(x, y), size =(30, 30)) # Praegu on size suvakas ja buttonite variablei jaoks tuleb mingi nimetamis süsteem välja mõelda
+            self.add_widget(button)
+            # self.ids[sõnastik[nimi]] = button
+            n += 1
+            
 
 
 class MyApp(App):
@@ -30,6 +77,7 @@ class MyApp(App):
     
     filename = 'myfile.json'
     n = 1 
+    list = []
 
     def on_start(self): 
         self.read_data('lastevent')
@@ -59,11 +107,11 @@ class MyApp(App):
         data[event] = data['template']
         fhand.close()
         fhand = open(self.filename, 'w')
-        print(data)
+        # print(data)
         json.dump(data, fhand, indent=2)
         fhand.close()
         self.read_data(event)
-        
+        MyGrid().lisanupp()
 
 
     # kirjutab andmeid json faili, uuendab praeguse ajatelje nime
@@ -89,6 +137,8 @@ class MyApp(App):
         json.dump(data, fhand, indent=2)
         fhand.close()
         self.currentevent = event
+        # print(self.list)
+
 
 
 
@@ -97,10 +147,12 @@ class MyApp(App):
         fhand = open(self.filename)
         data = json.load(fhand)
         if event == 'lastevent':
+            # print(data)
             for i in data:
-                event = i
+                event = i 
 
-        # print(data)
+        
+        # print(event)
 
         # print(self.root.ids.varv.color)
         self.root.ids.nimi.text = event
