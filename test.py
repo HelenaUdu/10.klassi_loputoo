@@ -70,6 +70,8 @@ class MyApp(App):
         json.dump(data, fhand, indent=2)
         fhand.close()
         self.read_data(event)
+        event = Button(text='')
+
         
 
 
