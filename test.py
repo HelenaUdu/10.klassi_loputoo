@@ -114,59 +114,5 @@ class MyApp(App):
         # print(self.currentevent)
 
 
-
-    filename = 'myfile.json'
-
-    def on_start(self): 
-        self.read_data('firstelement')
-
-
-    def on_stop(self):
-        self.save_data()
-
-
-
-
-    # kirjutab andmeid json faili, uuendab praeguse ajatelje nime
-    def save_data(self):
-        # print(self.root.ids.mytextinput.text)
-        fhand = open(self.filename)
-        data = json.load(fhand)
-        event = self.root.ids.nimi.text
-        print(self.currentevent)
-        print(data)
-        print(self.root.ids.varv.color)
-        data[event] = data.pop(self.currentevent)
-
-        data[event]['aasta'] = self.root.ids.aasta.text
-        data[event]['ekr'] =  self.root.ids.ekr.active 
-        data[event]['kuu'] = self.root.ids.kuu.text
-        data[event]['paev'] = self.root.ids.paev.text
-        data[event]['kirjeldus'] = self.root.ids.kirjeldus.text
-        data[event]['varv'] = self.root.ids.varv.color
-        fhand = open(self.filename, 'w')
-        json.dump(data, fhand, indent=2)
-        self.currentevent = event
-
-
-    # Loeb andmeid json failist
-    def read_data(self, event):
-        fhand = open(self.filename)
-        data = json.load(fhand)
-        if event == 'firstelement':
-            for i in data:
-                event = i
-                break
-        print(data)
-        print(self.root.ids.varv.color)
-        self.root.ids.nimi.text = event
-        self.root.ids.aasta.text = data[event]['aasta']
-        self.root.ids.ekr.active = data[event]['ekr']
-        self.root.ids.kuu.text = data[event]['kuu']
-        self.root.ids.paev.text = data[event]['paev']
-        self.root.ids.kirjeldus.text = data[event]['kirjeldus']
-        self.root.ids.varv.color = data[event]['varv']
-        self.currentevent = event
-
 if __name__ == '__main__':
     MyApp().run()
