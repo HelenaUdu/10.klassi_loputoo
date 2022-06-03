@@ -3,7 +3,7 @@
 
 [] restrictida textinput väljad(numbrid vahemikus 1-12 kuul, päevadel 1-31, aastal number) 
 
-[] buttoni canvase peale panemine
+[x] buttoni canvase peale panemine
 
 [] Kustutab lisanuppu uuesti 
 

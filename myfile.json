@@ -38,6 +38,19 @@
       1
     ]
   },
+  "template2": {
+    "aasta": "",
+    "ekr": false,
+    "kuu": "",
+    "paev": "",
+    "kirjeldus": "",
+    "varv": [
+      1.0,
+      1.0,
+      1.0,
+      1
+    ]
+  },
   "template3": {
     "aasta": "",
     "ekr": false,
@@ -59,103 +72,12 @@
     "kirjeldus": "",
     "varv": [
       1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "template5": {
-    "aasta": "",
-    "ekr": false,
-    "kuu": "",
-    "paev": "",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "template6": {
-    "aasta": "",
-    "ekr": false,
-    "kuu": "",
-    "paev": "",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "template7": {
-    "aasta": "",
-    "ekr": false,
-    "kuu": "",
-    "paev": "",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "template8": {
-    "aasta": "",
-    "ekr": false,
-    "kuu": "",
-    "paev": "",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "template9": {
-    "aasta": "",
-    "ekr": false,
-    "kuu": "",
-    "paev": "",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "template10": {
-    "aasta": "",
-    "ekr": false,
-    "kuu": "",
-    "paev": "",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
+      0.5,
+      0.19999999999999996,
       1
     ]
   },
   "template1": {
-    "aasta": "",
-    "ekr": false,
-    "kuu": "",
-    "paev": "",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "template2": {
     "aasta": "",
     "ekr": false,
     "kuu": "",

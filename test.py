@@ -21,7 +21,9 @@ class MyGrid(Widget):
     def piira_kuupaev(self):
         pass
         self.input_filter = 'int'
-        
+    
+    def pressed(self, instance):
+            print("pressed")
 
     def lisanupp(self):
         # Paneme pärast need lisanupp ja lisa_event kokku
@@ -34,20 +36,15 @@ class MyGrid(Widget):
                         järjend[j], järjend[j+1] = järjend[j+1], järjend[j]
             return järjend
         kuupaevad = [18840117, 20050111, 20200409]
+        nimi = "Tere"
         pikkus = len(kuupaevad)
-        bubblesort(kuupaevad, pikkus)
-        n = 1 # mitmes event on ajateljel
-        for i in kuupaevad:
-            x = Window.width/pikkus*n
-            y = Window.height/4*3
-            # button = Button(text="1", pos =(100, 100), size =(300, 300)) # Praegu on size suvakas ja buttonite variablei jaoks tuleb mingi nimetamis süsteem välja mõelda
-            Btn1 = Button(text= "Btn1", size= (100000, 100000), size_hint= (None, None), pos =(100, 100), pos_hint = (None, None))
-            self.add_widget(Btn1)
-            # self.ids[sõnastik[nimi]] = button
-            n += 1
-
+        kuupaevad = bubblesort(kuupaevad, pikkus)
+        y = Window.height/28*8
+        for i in range(0, pikkus):
             
-
+            x = Window.width/pikkus*i + 30
+            button = Button(text=str(kuupaevad[i-1]), pos=(x, y), size=(20, 20)) #the text on the button
+            self.ids.w_canvas.add_widget(button) #added to the grid
 
 class MyApp(App):
     def build(self):
@@ -88,7 +85,6 @@ class MyApp(App):
         json.dump(data, fhand, indent=2)
         fhand.close()
         self.read_data(event)
-        MyGrid().lisanupp()
 
 
     # kirjutab andmeid json faili, uuendab praeguse ajatelje nime
