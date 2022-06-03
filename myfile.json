@@ -1,17 +1,4 @@
 {
-  "baba2": {
-    "aasta": "555",
-    "ekr": true,
-    "kuu": "kuu1",
-    "paev": "paev1",
-    "kirjeldus": "mina olen baba1",
-    "varv": [
-      0.4,
-      0.775,
-      1.0,
-      1
-    ]
-  },
   "baba1": {
     "aasta": "555",
     "ekr": true,
@@ -25,6 +12,123 @@
       1
     ]
   },
+  "template2": {
+    "aasta": "",
+    "ekr": false,
+    "kuu": "",
+    "paev": "",
+    "kirjeldus": "",
+    "varv": [
+      1.0,
+      1.0,
+      1.0,
+      1
+    ]
+  },
+  "template3": {
+    "aasta": "",
+    "ekr": false,
+    "kuu": "",
+    "paev": "",
+    "kirjeldus": "",
+    "varv": [
+      1.0,
+      1.0,
+      1.0,
+      1
+    ]
+  },
+  "template4": {
+    "aasta": "",
+    "ekr": false,
+    "kuu": "",
+    "paev": "",
+    "kirjeldus": "",
+    "varv": [
+      1.0,
+      1.0,
+      1.0,
+      1
+    ]
+  },
+  "template5": {
+    "aasta": "",
+    "ekr": false,
+    "kuu": "",
+    "paev": "",
+    "kirjeldus": "",
+    "varv": [
+      1.0,
+      1.0,
+      1.0,
+      1
+    ]
+  },
+  "template6": {
+    "aasta": "",
+    "ekr": false,
+    "kuu": "",
+    "paev": "",
+    "kirjeldus": "",
+    "varv": [
+      1.0,
+      1.0,
+      1.0,
+      1
+    ]
+  },
+  "template7": {
+    "aasta": "",
+    "ekr": false,
+    "kuu": "",
+    "paev": "",
+    "kirjeldus": "",
+    "varv": [
+      1.0,
+      1.0,
+      1.0,
+      1
+    ]
+  },
+  "template8": {
+    "aasta": "",
+    "ekr": false,
+    "kuu": "",
+    "paev": "",
+    "kirjeldus": "",
+    "varv": [
+      1.0,
+      1.0,
+      1.0,
+      1
+    ]
+  },
+  "template9": {
+    "aasta": "",
+    "ekr": false,
+    "kuu": "",
+    "paev": "",
+    "kirjeldus": "",
+    "varv": [
+      1.0,
+      1.0,
+      1.0,
+      1
+    ]
+  },
+  "template10": {
+    "aasta": "",
+    "ekr": false,
+    "kuu": "",
+    "paev": "",
+    "kirjeldus": "",
+    "varv": [
+      1.0,
+      1.0,
+      1.0,
+      1
+    ]
+  },
   "template": {
     "aasta": "",
     "ekr": false,
@@ -34,6 +138,19 @@
     "varv": [
       1.0,
       1.0,
+      1.0,
+      1
+    ]
+  },
+  "baba2": {
+    "aasta": "555",
+    "ekr": true,
+    "kuu": "kuu1",
+    "paev": "paev1",
+    "kirjeldus": "mina olen baba1",
+    "varv": [
+      0.4,
+      0.775,
       1.0,
       1
     ]

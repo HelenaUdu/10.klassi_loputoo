@@ -1,17 +1,3 @@
-"""
-[] restrictida textinput väljad(numbrid vahemikus 1-12 kuul, päevadel 1-31, aastal number)
-
-
-
-
-"""
-
-
-
-
-
-
-
 from cgitb import text
 from msilib.schema import CheckBox
 from kivy.app import App
@@ -50,9 +36,10 @@ class MyGrid(Widget):
         bubblesort(kuupaevad, pikkus)
         n = 1 # mitmes event on ajateljel
         for i in kuupaevad:
-            x = self.left/pikkus*n
-            y = self.center_y/2*3
+            x = 0/pikkus*n
+            y = Window.height/4*3
             button = Button(pos =(x, y), size =(30, 30)) # Praegu on size suvakas ja buttonite variablei jaoks tuleb mingi nimetamis süsteem välja mõelda
+            self.add_widget(button)
             # self.ids[sõnastik[nimi]] = button
             n += 1
             
