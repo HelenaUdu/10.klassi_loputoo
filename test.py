@@ -19,7 +19,9 @@ class MyGrid(Widget):
         super(MyGrid, self).__init__(**kwargs)
     
     def piira_kuupaev(self):
+        pass
         self.input_filter = 'int'
+        
 
     def lisanupp(self):
         # Paneme pärast need lisanupp ja lisa_event kokku
@@ -36,12 +38,14 @@ class MyGrid(Widget):
         bubblesort(kuupaevad, pikkus)
         n = 1 # mitmes event on ajateljel
         for i in kuupaevad:
-            x = 0/pikkus*n
+            x = Window.width/pikkus*n
             y = Window.height/4*3
-            button = Button(pos =(x, y), size =(30, 30)) # Praegu on size suvakas ja buttonite variablei jaoks tuleb mingi nimetamis süsteem välja mõelda
-            self.add_widget(button)
+            # button = Button(text="1", pos =(100, 100), size =(300, 300)) # Praegu on size suvakas ja buttonite variablei jaoks tuleb mingi nimetamis süsteem välja mõelda
+            Btn1 = Button(text= "Btn1", size= (100000, 100000), size_hint= (None, None), pos =(100, 100), pos_hint = (None, None))
+            self.add_widget(Btn1)
             # self.ids[sõnastik[nimi]] = button
             n += 1
+
             
 
 
@@ -134,60 +138,6 @@ class MyApp(App):
         self.currentevent = event
         # print(self.currentevent)
 
-
-
-    filename = 'myfile.json'
-
-    def on_start(self): 
-        self.read_data('firstelement')
-
-
-    def on_stop(self):
-        self.save_data()
-
-
-
-
-    # kirjutab andmeid json faili, uuendab praeguse ajatelje nime
-    def save_data(self):
-        # print(self.root.ids.mytextinput.text)
-        fhand = open(self.filename)
-        data = json.load(fhand)
-        event = self.root.ids.nimi.text
-        print(self.currentevent)
-        print(data)
-        print(self.root.ids.varv.color)
-        data[event] = data.pop(self.currentevent)
-
-        data[event]['aasta'] = self.root.ids.aasta.text
-        data[event]['ekr'] =  self.root.ids.ekr.active 
-        data[event]['kuu'] = self.root.ids.kuu.text
-        data[event]['paev'] = self.root.ids.paev.text
-        data[event]['kirjeldus'] = self.root.ids.kirjeldus.text
-        data[event]['varv'] = self.root.ids.varv.color
-        fhand = open(self.filename, 'w')
-        json.dump(data, fhand, indent=2)
-        self.currentevent = event
-
-
-    # Loeb andmeid json failist
-    def read_data(self, event):
-        fhand = open(self.filename)
-        data = json.load(fhand)
-        if event == 'firstelement':
-            for i in data:
-                event = i
-                break
-        print(data)
-        print(self.root.ids.varv.color)
-        self.root.ids.nimi.text = event
-        self.root.ids.aasta.text = data[event]['aasta']
-        self.root.ids.ekr.active = data[event]['ekr']
-        self.root.ids.kuu.text = data[event]['kuu']
-        self.root.ids.paev.text = data[event]['paev']
-        self.root.ids.kirjeldus.text = data[event]['kirjeldus']
-        self.root.ids.varv.color = data[event]['varv']
-        self.currentevent = event
 
 if __name__ == '__main__':
     MyApp().run()
