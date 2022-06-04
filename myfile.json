@@ -2,7 +2,7 @@
   "template": {
     "aasta": "2000",
     "ekr": false,
-    "kuu": "05",
+    "kuu": "01",
     "paev": "01",
     "kirjeldus": "",
     "varv": [
@@ -24,23 +24,9 @@
       1.0,
       1
     ]
-  "baba1": {
   },
   "baba1": {
-    "aasta": "666",
-    "ekr": true,
-    "kuu": "03",
-    "paev": "15",
-    "kirjeldus": "mina olen baba1",
-    "varv": [
-      0.4,
-      0.775,
-      1.0,
-      1
-    ]
-  },
-  "template3": {
-    "aasta": "2000",
+    "aasta": "5000",
     "ekr": false,
     "kuu": "01",
     "paev": "01",
@@ -52,7 +38,7 @@
       1
     ]
   },
-  "template4": {
+  "uusevent3": {
     "aasta": "2000",
     "ekr": false,
     "kuu": "01",
