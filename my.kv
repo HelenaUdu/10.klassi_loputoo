@@ -40,6 +40,7 @@
                 size_hint:(.2, .25)
                 text:"Lisa"
                 on_press: app.lisa_event()
+                on_press: root.lisanupp()
 
             # eKr
             Label:
@@ -89,7 +90,8 @@
                 size_hint:(.2, .25)
                 on_press: app.kustuta_event()
      
-        Label:
+        Widget:
+            id: w_canvas
             canvas:
                 Line: 
                     points: 0, self.center_y, self.right, self.center_y

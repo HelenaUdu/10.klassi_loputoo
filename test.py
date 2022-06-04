@@ -19,15 +19,37 @@ class MyGrid(Widget):
     def __init__(self, **kwargs):
         super(MyGrid, self).__init__(**kwargs)
 
-    def lisanupp(self, kuupaevad, pikkus):
-        n = 1 # mitmes event on ajateljel
-        for i in kuupaevad:
-            x = Window.width/pikkus*n
-            y = Window.height/4*3
-            button = Button(pos =(x, y), size =(30, 30)) # Praegu on size suvakas ja buttonite variablei jaoks tuleb mingi nimetamis süsteem välja mõelda
-            self.add_widget(button)
-            # self.ids[sõnastik[nimi]] = button
-            n += 1
+    def lisanupp(self):
+        print('lisanuppus olen')
+        # Paneme pärast need lisanupp ja lisa_event kokku
+        # võtab myfile.jsonist kuupaevad(formaat aasta+kuu+päev nt 18840117) ja sordib need bubblesort algoritmiga
+        # Teised andmed nimi, kirjeldus jne võiksid olla listis, mille sees on dictionaryd või teised listid, leppime tunnis kokku
+        self.children[0].children[0].clear_widgets()
+        def bubblesort(järjend, pikkus):
+            for i in range(pikkus):
+                for j in range(pikkus -1):
+                    if järjend[j] > järjend[j+1]:
+                        järjend[j], järjend[j+1] = järjend[j+1], järjend[j]
+            return järjend
+        kuupaevad = []
+        fhand = open(MyApp.filename)
+        data = json.load(fhand)
+        for event in data:
+            kuupaev = int(data[event]['aasta'] + data[event]['kuu'] + data[event]['paev'])
+            kuupaevad.append(kuupaev)
+        fhand.close()
+
+        
+        nimi = "Tere"
+        pikkus = len(kuupaevad)
+        kuupaevad = bubblesort(kuupaevad, pikkus)
+        y = Window.height/28*8
+        x = 30
+        for i in range(0, pikkus):
+            
+            button = Button(text=str(kuupaevad[i-1]), pos=(x, y), size=(20, 20)) #the text on the button
+            x = Window.width/pikkus*(i+1)
+            self.ids.w_canvas.add_widget(button) #added to the grid
     
 
 class MyApp(App):
@@ -146,7 +168,6 @@ class MyApp(App):
         bubblesort(kuupaevad, pikkus)
 
         self.read_data(event)
-        MyGrid().lisanupp(kuupaevad, pikkus)
 
     # kirjutab andmeid json faili, uuendab praeguse ajatelje nime
     def save_data(self):
