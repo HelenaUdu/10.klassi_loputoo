@@ -1,29 +1,22 @@
 from cgitb import text
 from msilib.schema import CheckBox
+from tabnanny import check
+from idna import check_initial_combiner
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.widget import Widget
-from kivy.properties import ObjectProperty
 from kivy.uix.stacklayout import StackLayout
 from kivy.graphics import Line, Color
 from kivy.core.window import Window
-import json
-
+from kivy.uix.popup import Popup
 import json
 
 class MyGrid(Widget):
     def __init__(self, **kwargs):
         super(MyGrid, self).__init__(**kwargs)
-    
-    def piira_kuupaev(self):
-        pass
-        self.input_filter = 'int'
-    
-    def pressed(self, instance):
-            print("pressed")
 
     def lisanupp(self):
         # Paneme pärast need lisanupp ja lisa_event kokku

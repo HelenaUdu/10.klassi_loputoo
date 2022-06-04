@@ -50,44 +50,5 @@
       1.0,
       1
     ]
-  },
-  "template4": {
-    "aasta": "",
-    "ekr": false,
-    "kuu": "",
-    "paev": "",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "template1": {
-    "aasta": "",
-    "ekr": false,
-    "kuu": "",
-    "paev": "",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "template2": {
-    "aasta": "",
-    "ekr": false,
-    "kuu": "",
-    "paev": "",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
   }
 }

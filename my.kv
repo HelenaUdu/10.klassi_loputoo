@@ -3,92 +3,118 @@
 <MyGrid>:
 
     
-    GridLayout:
+    BoxLayout:
         id:grid 
-        cols:1
+        orientation: "vertical"
         size: root.width-50, root.height-80
         pos: 50, 50
 
         # 2
-        StackLayout:
-            orientation: 'lr-tb'
-            # Nimi
-            Label:
-                text: "Nimi"
-                size_hint:(.1, .125)
-            TextInput:
-                text: ''
-                id: nimi 
-                multiline: False
-                hint_text: "Nimi"
-                size_hint:(.15, .125)
+        BoxLayout:
+            orientation: "horizontal"
+
+            #3
+            BoxLayout:
+                orientation: "horizontal"
+
+                #4
+                BoxLayout:
+                    orientation: "vertical"
+                    #5
+                    GridLayout:
+                        cols: 2
+                        rows: 2
+                        Label:
+                            text: "Nimi"
+                            size_hint:(.4, .2)
+                        TextInput:
+                            text: ''
+                            id: nimi 
+                            multiline: False
+                            hint_text: "Nimi"
+                            size_hint:(.6, .2)
+
+                        Label:
+                            size_hint:(.4, .2)
+                            text: "eKr"
+                        CheckBox:
+                            id: ekr
+                            size_hint:(.6, .2)
+                    
+                    ColorPicker:
+                        id: varv
+                        size_hint:(1, .6)
+                # 6
+                GridLayout:
+                    cols: 2
+                    rows: 3
+
+                    Label:
+                        text: "Aasta"
+                        size_hint:(.4, .333)
+                    TextInput:
+                        size_hint:(.6, .333)
+                        text: ''
+                        hint_text: "Aasta"
+                        id: aasta 
+                        multiline: False
+                
+                    Label:
+                        text: "Kuu"
+                        size_hint:(.4, .333)
+                    TextInput:
+                        text: '01'
+                        hint_text: "Kuu"
+                        id: kuu 
+                        multiline: False
+                        size_hint:(.6, .333)
+                
+                    Label:
+                        text: "Päev"
+                        size_hint:(.4, .333)
+
+                    TextInput:
+                        text: '01'
+                        hint_text: "Päev"
+                        id: paev 
+                        multiline: False
+                        size_hint:(.6, .333)
+
             
-            Label:
-                text: "Aasta"
-                size_hint:(.1, .167)
-            TextInput:
-                size_hint:(.15, .167)
-                text: ''
-                hint_text: "Aasta"
-                id: aasta 
-                multiline: False
+            BoxLayout:
+                orientation: "horizontal"
+
+                BoxLayout:
+                    orientation: "vertical"
+                    Label:
+                        size_hint:(1, .2)
+                        text: "Kirjeldus"
+                
+                    TextInput:
+                        text: ''
+                        id: kirjeldus
+                        hint_text: "Kirjeldus"
+                        multiline: True
+                        size_hint:(1, .8)   
+
+                BoxLayout:
+                    size_hint: (0.2, 1)
+                    orientation: "vertical"
+                    Button:
+                        # size_hint:(.2, .25)
+                        text:"Lisa"
+                        on_press: root.lisanupp()
+                        on_press: app.lisa_event()
+    
             
-            Label:
-                size_hint:(.3, .2)
-                text: "Kirjeldus"
-
-            Button:
-                size_hint:(.2, .25)
-                text:"Lisa"
-                on_press: root.lisanupp()
-                on_press: app.lisa_event()
-            # eKr
-            Label:
-                size_hint:(.1, .125)
-                text: "eKr"
-            CheckBox:
-                id: ekr
-                size_hint:(.15, .125)
-            # kuu
-            Label:
-                text: "Kuu"
-                size_hint:(.1, .166)
-            TextInput:
-                text: '01'
-                hint_text: "Kuu"
-                id: kuu 
-                multiline: False
-                size_hint:(.15, .167)
-
-            TextInput:
-                text: ''
-                id: kirjeldus
-                hint_text: "Kirjeldus"
-                multiline: True
-                size_hint:(.3, .29999)           
-            # Värv
-            ColorPicker:
-                id: varv
-                size_hint:(.25, .25)
-
-            Label:
-                text: "Päev"
-                size_hint:(.1, .167)
-
-            TextInput:
-                text: '01'
-                hint_text: "Päev"
-                id: paev 
-                multiline: False
-                size_hint:(.15, .167)
-
-            Label:
-                size_hint: (.3, .00001)
-
-            Button:
-                text: "Kustuta"
-                size_hint:(.2, .25)
-                on_press: app.kustuta_event()
+    
+                    # Label:
+                        # size_hint: (.3, .00001)
+    
+                    Button:
+                        text: "Kustuta"
+                        # size_hint:(.2, .25)
+                        on_press: app.kustuta_event()
      
         Widget:
             id: w_canvas
