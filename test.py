@@ -29,6 +29,7 @@ class MyGrid(Widget):
         # Paneme pärast need lisanupp ja lisa_event kokku
         # võtab myfile.jsonist kuupaevad(formaat aasta+kuu+päev nt 18840117) ja sordib need bubblesort algoritmiga
         # Teised andmed nimi, kirjeldus jne võiksid olla listis, mille sees on dictionaryd või teised listid, leppime tunnis kokku
+        self.children[0].children[0].clear_widgets()
         def bubblesort(järjend, pikkus):
             for i in range(pikkus):
                 for j in range(pikkus -1):
@@ -40,11 +41,13 @@ class MyGrid(Widget):
         pikkus = len(kuupaevad)
         kuupaevad = bubblesort(kuupaevad, pikkus)
         y = Window.height/28*8
+        x = 30
         for i in range(0, pikkus):
             
-            x = Window.width/pikkus*i + 30
             button = Button(text=str(kuupaevad[i-1]), pos=(x, y), size=(20, 20)) #the text on the button
+            x = Window.width/pikkus*(i+1)
             self.ids.w_canvas.add_widget(button) #added to the grid
+        
 
 class MyApp(App):
     def build(self):

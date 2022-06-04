@@ -38,19 +38,6 @@
       1
     ]
   },
-  "template2": {
-    "aasta": "",
-    "ekr": false,
-    "kuu": "",
-    "paev": "",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
   "template3": {
     "aasta": "",
     "ekr": false,
@@ -72,12 +59,25 @@
     "kirjeldus": "",
     "varv": [
       1.0,
-      0.5,
-      0.19999999999999996,
+      1.0,
+      1.0,
       1
     ]
   },
   "template1": {
+    "aasta": "",
+    "ekr": false,
+    "kuu": "",
+    "paev": "",
+    "kirjeldus": "",
+    "varv": [
+      1.0,
+      1.0,
+      1.0,
+      1
+    ]
+  },
+  "template2": {
     "aasta": "",
     "ekr": false,
     "kuu": "",
