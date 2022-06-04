@@ -5,7 +5,7 @@
 
 [x] buttoni canvase peale panemine
 
-[] Kustutab lisanupu uuesti 
+[x] Kustutab lisanuppu uuesti 
 
 *[] Kohal(aasta) ja all(nimi)
 
