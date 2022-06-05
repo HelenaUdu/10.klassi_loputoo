@@ -14,29 +14,16 @@ from kivy.graphics import Line, Color
 from kivy.core.window import Window
 from kivy.uix.popup import Popup
 import json
-from kivy.clock import Clock
+
 
 class MyGrid(Widget):
     def __init__(self, **kwargs):
         super(MyGrid, self).__init__(**kwargs)
 
-    def read_data(self, event):
-        # print(event)
-        fhand = open(MyApp.filename)
-        data = json.load(fhand)
-        if event == 'lastevent':
-            for i in data:
-                event = i 
-        App.get_running_app().root.ids.nimi.text = event
-        App.get_running_app().root.ids.aasta.text = data[event]['aasta']
-        App.get_running_app().root.ids.ekr.active = data[event]['ekr']
-        App.get_running_app().root.ids.kuu.text = data[event]['kuu']
-        App.get_running_app().root.ids.paev.text = data[event]['paev']
-        App.get_running_app().root.ids.kirjeldus.text = data[event]['kirjeldus']
-        App.get_running_app().root.ids.varv.color = data[event]['varv']
-        MyApp.currentevent = event
-
     def lisanupp(self):
+        if myappinstance.check_for_error() == True:
+            return
+        myappinstance.lisa_event_json_faili()
         # Paneme pärast need lisanupp ja lisa_event kokku
         # võtab myfile.jsonist kuupaevad(formaat aasta+kuu+päev nt 18840117) ja sordib need bubblesort algoritmiga
         # Teised andmed nimi, kirjeldus jne võiksid olla listis, mille sees on dictionaryd või teised listid, leppime tunnis kokku
@@ -49,34 +36,40 @@ class MyGrid(Widget):
             return järjend
         kuupaevad = []
         evendinimed = []
+        varvid = []
         fhand = open(MyApp.filename)
         data = json.load(fhand)
         for event in data:
+            if event == 'template':
+                continue
             evendinimi = event
-            # print(evendinimi)
+            varv = data[event]['varv'][0], data[event]['varv'][1], data[event]['varv'][2], data[event]['varv'][3]            
             kuupaev = int(data[event]['aasta'] + data[event]['kuu'] + data[event]['paev'])
             kuupaevad.append(kuupaev)
             evendinimed.append(evendinimi)
+            varvid.append(varv)
         fhand.close()
-
+        kuupaevad = kuupaevad[:-1]
+        evendinimed = evendinimed[:-1]
+        varvid = varvid[:-1]
         vastavus = {}
-
         for i in range(0, len(kuupaevad)):
-            vastavus[kuupaevad[i-1]] = evendinimed[i-1]
-        print(vastavus)
-        nimi = "Tere"
+            vastavus[kuupaevad[i-1]] = [evendinimed[i-1], varvid[i-1]]
         pikkus = len(kuupaevad)
         kuupaevad = bubblesort(kuupaevad, pikkus)
         y = Window.height/28*8
         x = 30
-        print(kuupaevad)
         for i in range(0, pikkus):
-            print(kuupaevad[i], vastavus[kuupaevad[i]])
-            button = Button(text=str(kuupaevad[i]) + vastavus[kuupaevad[i]], pos=(x, y), size=(20, 20), background_color=(data[event]['varv'][0], data[event]['varv'][1], data[event]['varv'][2], data[event]['varv'][3])) #the text on the button
+            button = Button(text= '\n' + str(kuupaevad[i]) + '\n' + vastavus[kuupaevad[i]][0], pos=(x, y), size=(20, 20), background_color=vastavus[kuupaevad[i]][1]) #the text on the button
             x = Window.width/pikkus*(i+1)
-            # print(evendinimed[i-1])
-            button.bind(on_press=lambda x:self.read_data(vastavus[kuupaevad[i]]))
+            button.bind(on_press = lambda *args, i=i: self.on_buttonpress(vastavus[kuupaevad[i]][0]))
             self.ids.w_canvas.add_widget(button) #added to the grid
+        
+    def on_buttonpress(self, eventname):
+        if myappinstance.check_for_error() == True:
+            return
+        myappinstance.save_data()
+        myappinstance.read_data(eventname)
     
 
 class MyApp(App):
@@ -86,10 +79,10 @@ class MyApp(App):
     def __init__(self, **kwargs):
         super(MyApp, self).__init__(**kwargs)
         Window.bind(on_request_close=self.on_request_close)
+        
+
 
     filename = 'myfile.json'
-    lubatudpaevad = []
-    lubatudkuud = []
 
     # kui programm käivitub, seda koodi jooksutatakse
     def on_start(self): 
@@ -101,22 +94,24 @@ class MyApp(App):
     def check_for_error(self):
         evendid = []
         fhand = open(self.filename)
-
         data = json.load(fhand)
         for event in data:
+            if event == 'template' or event == myappinstance.currentevent:
+                continue
             evendid.append(event)
         fhand.close()
-        event = self.root.ids.nimi.text
-
-        if event in evendid[:-1]:
+        praeguneevent = self.root.ids.nimi.text
+        if praeguneevent in evendid:
             popup = Popup(title='VIGA', content=Label(text='Sama nimega event on olemas juba'), size_hint=(None, None), size=(400, 400))
             popup.open()
             return True
-        elif self.piira_kuupaeva() == 'VIGA':
+        if self.piira_kuupaevad() == 'VIGA':
             return True
         else:
             self.save_data()
             return False
+
+        
 
     # kui programmi tahetakse kinni panna, siis checkib errorite jäoks
     # kui error on, siis ei lase kinni panna programmi
@@ -124,16 +119,23 @@ class MyApp(App):
         return self.check_for_error()
 
     # piirab kuude ja päevade sisestuse. Ei saa enam panna kuupäevade väljadessa tähti (nt: "200abcd") - siis viskab errori
-    def piira_kuupaeva(self):
+    def piira_kuupaevad(self):
+        lubatudpaevad = []
+        lubatudkuud = []
         for num in range(1, 32):
             if num < 10:
-                self.lubatudpaevad.append('0' + str(num))
-                self.lubatudkuud.append('0' + str(num))
+                lubatudpaevad.append('0' + str(num))
+                lubatudkuud.append('0' + str(num))
             elif num < 13:
-                self.lubatudkuud.append(str(num))
-                self.lubatudpaevad.append(str(num))
+                lubatudkuud.append(str(num))
+                lubatudpaevad.append(str(num))
             elif num >= 11:
-                self.lubatudpaevad.append(str(num))
+                lubatudpaevad.append(str(num))
+
+        if self.root.ids.kuu.text not in lubatudkuud or self.root.ids.paev.text not in lubatudpaevad:
+            popup = Popup(title='VIGA', content=Label(text='Kuu või päevaga on midagi valesti!'), size_hint=(None, None), size=(400, 400))
+            popup.open()
+            return 'VIGA'
 
         try:
             int(self.root.ids.aasta.text)
@@ -143,16 +145,36 @@ class MyApp(App):
             popup = Popup(title='VIGA', content=Label(text='Kuskil kuupäevades on ka tähed!'), size_hint=(None, None), size=(400, 400))
             popup.open()
             return 'VIGA'
-
-        if self.root.ids.kuu.text not in self.lubatudkuud or self.root.ids.paev.text not in self.lubatudpaevad:
-            popup = Popup(title='VIGA', content=Label(text='Kuu või päevaga on midagi valesti'), size_hint=(None, None), size=(400, 400))
+        
+        kuupaevad = []
+        fhand = open(self.filename)
+        data = json.load(fhand)
+        for event in data:
+            if event == 'template' or event == myappinstance.currentevent:
+                continue
+            kuupaev = int(data[event]['aasta'] + data[event]['kuu'] + data[event]['paev'])
+            kuupaevad.append(kuupaev)
+        fhand.close()
+        praeguseevendikuupaev = int(self.root.ids.aasta.text + self.root.ids.kuu.text + self.root.ids.paev.text)
+        if praeguseevendikuupaev in kuupaevad:
+            popup = Popup(title='VIGA', content=Label(text='Samal kuupäeval on juba mõni muu sündmus!'), size_hint=(None, None), size=(400, 400))
             popup.open()
             return 'VIGA'
 
+
+
+
     # kustutab praeguse evendi
     def kustuta_event(self):
+        evendid = []
         fhand = open(self.filename)
         data = json.load(fhand)
+        for event in data:
+            evendid.append(event)
+        if len(evendid) == 2:
+            popup = Popup(title='VIGA', content=Label(text='See on su ainus sündmus, ära seda kustuta!'), size_hint=(None, None), size=(400, 400))
+            popup.open()
+            return
         data.pop(self.currentevent)
         fhand.close()
         fhand = open(self.filename, 'w')
@@ -163,9 +185,7 @@ class MyApp(App):
     # lisab uue eventi
     # võtab myfile.jsonist kuupaevad(formaat aasta+kuu+päev nt 18840117) ja sordib need bubblesort algoritmiga
     # Teised andmed nimi, kirjeldus jne võiksid olla listis, mille sees on dictionaryd või teised listid, leppime tunnis kokku
-    def lisa_event(self):
-        # if self.check_for_error() == True:
-        #     return
+    def lisa_event_json_faili(self):
         evendiloend = []
         kuupaevad = []
         self.save_data()
@@ -182,25 +202,15 @@ class MyApp(App):
         fhand = open(self.filename, 'w')
         json.dump(data, fhand, indent=2)
         fhand.close()
-
-        def bubblesort(järjend, pikkus):
-            for i in range(pikkus):
-                for j in range(pikkus -1):
-                    if järjend[j] > järjend[j+1]:
-                        järjend[j], järjend[j+1] = järjend[j+1], järjend[j]
-         
-            return järjend
-    
-        pikkus = len(kuupaevad)
-        bubblesort(kuupaevad, pikkus)
-
+        
         self.read_data(event)
+
 
     # kirjutab andmeid json faili, uuendab praeguse ajatelje nime
     def save_data(self):
         fhand = open(self.filename)
         data = json.load(fhand)
-        event = self.root.ids.nimi.text
+        event = App.get_running_app().root.ids.nimi.text
         data[event] = data.pop(self.currentevent)
         data[event]['aasta'] = self.root.ids.aasta.text
         data[event]['ekr'] =  self.root.ids.ekr.active 
@@ -220,15 +230,16 @@ class MyApp(App):
         if event == 'lastevent':
             for i in data:
                 event = i 
-        App.get_running_app().root.ids.nimi.text = event
-        App.get_running_app().root.ids.aasta.text = data[event]['aasta']
-        App.get_running_app().root.ids.ekr.active = data[event]['ekr']
-        App.get_running_app().root.ids.kuu.text = data[event]['kuu']
-        App.get_running_app().root.ids.paev.text = data[event]['paev']
-        App.get_running_app().root.ids.kirjeldus.text = data[event]['kirjeldus']
-        App.get_running_app().root.ids.varv.color = data[event]['varv']
+        self.root.ids.nimi.text = event
+        self.root.ids.aasta.text = data[event]['aasta']
+        self.root.ids.ekr.active = data[event]['ekr']
+        self.root.ids.kuu.text = data[event]['kuu']
+        self.root.ids.paev.text = data[event]['paev']
+        self.root.ids.kirjeldus.text = data[event]['kirjeldus']
+        self.root.ids.varv.color = data[event]['varv']
         self.currentevent = event
 
 
 if __name__ == '__main__':
-    MyApp().run()
+    myappinstance=MyApp()
+    myappinstance.run()
