@@ -12,22 +12,22 @@
       1
     ]
   },
-  "uusevent3 the  return": {
-    "aasta": "35351",
-    "ekr": true,
+  "uusevent3": {
+    "aasta": "2022",
+    "ekr": false,
     "kuu": "01",
     "paev": "01",
     "kirjeldus": "",
     "varv": [
-      0.4,
-      1,
-      0.775,
+      1.0,
+      1.0,
+      1.0,
       1
     ]
   },
-  "uusevent3(2nd)e3": {
-    "aasta": "666",
-    "ekr": true,
+  "uusevent2": {
+    "aasta": "2323232",
+    "ekr": false,
     "kuu": "01",
     "paev": "01",
     "kirjeldus": "",
@@ -39,20 +39,33 @@
     ]
   },
   "uusevent3(2nd)": {
-    "aasta": "666",
+    "aasta": "232323123122",
     "ekr": false,
     "kuu": "01",
     "paev": "01",
     "kirjeldus": "",
     "varv": [
-      0.3019607843137255,
-      0.4764705882352942,
+      1.0,
+      1.0,
+      1.0,
+      1
+    ]
+  },
+  "uusevent4": {
+    "aasta": "323468",
+    "ekr": false,
+    "kuu": "01",
+    "paev": "01",
+    "kirjeldus": "",
+    "varv": [
+      1.0,
+      1.0,
       1.0,
       1
     ]
   },
   "uusevent5": {
-    "aasta": "2022",
+    "aasta": "453737",
     "ekr": false,
     "kuu": "01",
     "paev": "01",
@@ -64,11 +77,11 @@
       1
     ]
   },
-  "uusevent5(2nd)": {
+  "uusevent6": {
     "aasta": "2022",
     "ekr": false,
-    "kuu": "12",
-    "paev": "11",
+    "kuu": "01",
+    "paev": "01",
     "kirjeldus": "",
     "varv": [
       1.0,
