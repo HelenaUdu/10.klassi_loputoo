@@ -1,6 +1,6 @@
 {
   "template": {
-    "aasta": "2000",
+    "aasta": "2022",
     "ekr": false,
     "kuu": "01",
     "paev": "01",
@@ -12,35 +12,22 @@
       1
     ]
   },
-  "baba2": {
-    "aasta": "555",
+  "uusevent3 the  return": {
+    "aasta": "35351",
     "ekr": true,
-    "kuu": "02",
-    "paev": "05",
-    "kirjeldus": "mina olen baba2",
+    "kuu": "01",
+    "paev": "01",
+    "kirjeldus": "",
     "varv": [
       0.4,
+      1,
       0.775,
-      1.0,
       1
     ]
   },
-  "baba1": {
-    "aasta": "5000",
-    "ekr": false,
-    "kuu": "01",
-    "paev": "01",
-    "kirjeldus": "",
-    "varv": [
-      0.10196078431372546,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "uusevent3": {
-    "aasta": "2000",
-    "ekr": false,
+  "uusevent3(2nd)e3": {
+    "aasta": "666",
+    "ekr": true,
     "kuu": "01",
     "paev": "01",
     "kirjeldus": "",
@@ -51,11 +38,37 @@
       1
     ]
   },
-  "uusevent4": {
-    "aasta": "20005",
+  "uusevent3(2nd)": {
+    "aasta": "666",
     "ekr": false,
     "kuu": "01",
     "paev": "01",
+    "kirjeldus": "",
+    "varv": [
+      0.3019607843137255,
+      0.4764705882352942,
+      1.0,
+      1
+    ]
+  },
+  "uusevent5": {
+    "aasta": "2022",
+    "ekr": false,
+    "kuu": "01",
+    "paev": "01",
+    "kirjeldus": "",
+    "varv": [
+      1.0,
+      1.0,
+      1.0,
+      1
+    ]
+  },
+  "uusevent5(2nd)": {
+    "aasta": "2022",
+    "ekr": false,
+    "kuu": "12",
+    "paev": "11",
     "kirjeldus": "",
     "varv": [
       1.0,

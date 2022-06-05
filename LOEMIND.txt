@@ -1,0 +1,16 @@
+PROGRAMMI KÄIVITAMINE
+1. Lae all kausta sisu
+2. Käivita main.py
+
+KASUTUSJUHEND
+1.  Pane kirja oma evendi andmed
+    1.1 NB! Kuu ja Päev peavad olema kahekohalised (nt. 03 ja 11)
+2.  Vali ilus värv värviliselt kettalt 
+3.  Vajuta nuppu lisa (lisab ajateljele sündmuse)
+4.  if on_siiber_evendist:
+        return action(vajutu nuppu "Kustuta")
+5. Kui tahad enda eelnevaid sündmusi vaadata või muuta, siis vajuta all paiknevatele
+ajatelje nuppudele.
+
+Kõik uuendused salvestatakse automaatselt kinnipanekul,
+järgi programmi juhiseid veateate puhul!
