@@ -6,8 +6,7 @@
     BoxLayout:
         id:grid 
         orientation: "vertical"
-        size: root.width-50, root.height-80
-        pos: 50, 50
+        size: root.width-1, root.height-1
 
         # 2
         BoxLayout:
@@ -101,19 +100,19 @@
                     size_hint: (0.2, 1)
                     orientation: "vertical"
                     Button:
-                        # size_hint:(.2, .25)
+                        size_hint:(1, .333)
                         text:"Lisa"
                         on_press: root.lisanupp()
-                        on_press: app.lisa_event()
+                        # on_press: app.lisa_event_json_faili()
     
-            
-    
-                    # Label:
-                        # size_hint: (.3, .00001)
+                    Button:
+                        text: "Update"
+                        on_press: root.updatenupp()
+                        size_hint: (1, .333)
     
                     Button:
                         text: "Kustuta"
-                        # size_hint:(.2, .25)
+                        size_hint:(1, .333)
                         on_press: app.kustuta_event()
      
         Widget:
