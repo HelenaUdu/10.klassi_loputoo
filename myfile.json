@@ -32,39 +32,13 @@
     "paev": "01",
     "kirjeldus": "",
     "varv": [
-      1.0,
+      0.10196078431372546,
       1.0,
       1.0,
       1
     ]
   },
   "uusevent3": {
-    "aasta": "2000",
-    "ekr": false,
-    "kuu": "01",
-    "paev": "01",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "uusevent4": {
-    "aasta": "2000",
-    "ekr": false,
-    "kuu": "01",
-    "paev": "01",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "uusevent5": {
     "aasta": "2000",
     "ekr": false,
     "kuu": "01",

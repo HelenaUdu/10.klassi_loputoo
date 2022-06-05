@@ -14,13 +14,29 @@ from kivy.graphics import Line, Color
 from kivy.core.window import Window
 from kivy.uix.popup import Popup
 import json
+from kivy.clock import Clock
 
 class MyGrid(Widget):
     def __init__(self, **kwargs):
         super(MyGrid, self).__init__(**kwargs)
 
+    def read_data(self, event):
+        # print(event)
+        fhand = open(MyApp.filename)
+        data = json.load(fhand)
+        if event == 'lastevent':
+            for i in data:
+                event = i 
+        App.get_running_app().root.ids.nimi.text = event
+        App.get_running_app().root.ids.aasta.text = data[event]['aasta']
+        App.get_running_app().root.ids.ekr.active = data[event]['ekr']
+        App.get_running_app().root.ids.kuu.text = data[event]['kuu']
+        App.get_running_app().root.ids.paev.text = data[event]['paev']
+        App.get_running_app().root.ids.kirjeldus.text = data[event]['kirjeldus']
+        App.get_running_app().root.ids.varv.color = data[event]['varv']
+        MyApp.currentevent = event
+
     def lisanupp(self):
-        print('lisanuppus olen')
         # Paneme pärast need lisanupp ja lisa_event kokku
         # võtab myfile.jsonist kuupaevad(formaat aasta+kuu+päev nt 18840117) ja sordib need bubblesort algoritmiga
         # Teised andmed nimi, kirjeldus jne võiksid olla listis, mille sees on dictionaryd või teised listid, leppime tunnis kokku
@@ -32,23 +48,34 @@ class MyGrid(Widget):
                         järjend[j], järjend[j+1] = järjend[j+1], järjend[j]
             return järjend
         kuupaevad = []
+        evendinimed = []
         fhand = open(MyApp.filename)
         data = json.load(fhand)
         for event in data:
+            evendinimi = event
+            # print(evendinimi)
             kuupaev = int(data[event]['aasta'] + data[event]['kuu'] + data[event]['paev'])
             kuupaevad.append(kuupaev)
+            evendinimed.append(evendinimi)
         fhand.close()
 
-        
+        vastavus = {}
+
+        for i in range(0, len(kuupaevad)):
+            vastavus[kuupaevad[i-1]] = evendinimed[i-1]
+        print(vastavus)
         nimi = "Tere"
         pikkus = len(kuupaevad)
         kuupaevad = bubblesort(kuupaevad, pikkus)
         y = Window.height/28*8
         x = 30
+        print(kuupaevad)
         for i in range(0, pikkus):
-            
-            button = Button(text=str(kuupaevad[i-1]), pos=(x, y), size=(20, 20)) #the text on the button
+            print(kuupaevad[i], vastavus[kuupaevad[i]])
+            button = Button(text=str(kuupaevad[i]) + vastavus[kuupaevad[i]], pos=(x, y), size=(20, 20), background_color=(data[event]['varv'][0], data[event]['varv'][1], data[event]['varv'][2], data[event]['varv'][3])) #the text on the button
             x = Window.width/pikkus*(i+1)
+            # print(evendinimed[i-1])
+            button.bind(on_press=lambda x:self.read_data(vastavus[kuupaevad[i]]))
             self.ids.w_canvas.add_widget(button) #added to the grid
     
 
@@ -137,8 +164,8 @@ class MyApp(App):
     # võtab myfile.jsonist kuupaevad(formaat aasta+kuu+päev nt 18840117) ja sordib need bubblesort algoritmiga
     # Teised andmed nimi, kirjeldus jne võiksid olla listis, mille sees on dictionaryd või teised listid, leppime tunnis kokku
     def lisa_event(self):
-        if self.check_for_error() == True:
-            return
+        # if self.check_for_error() == True:
+        #     return
         evendiloend = []
         kuupaevad = []
         self.save_data()
@@ -193,13 +220,13 @@ class MyApp(App):
         if event == 'lastevent':
             for i in data:
                 event = i 
-        self.root.ids.nimi.text = event
-        self.root.ids.aasta.text = data[event]['aasta']
-        self.root.ids.ekr.active = data[event]['ekr']
-        self.root.ids.kuu.text = data[event]['kuu']
-        self.root.ids.paev.text = data[event]['paev']
-        self.root.ids.kirjeldus.text = data[event]['kirjeldus']
-        self.root.ids.varv.color = data[event]['varv']
+        App.get_running_app().root.ids.nimi.text = event
+        App.get_running_app().root.ids.aasta.text = data[event]['aasta']
+        App.get_running_app().root.ids.ekr.active = data[event]['ekr']
+        App.get_running_app().root.ids.kuu.text = data[event]['kuu']
+        App.get_running_app().root.ids.paev.text = data[event]['paev']
+        App.get_running_app().root.ids.kirjeldus.text = data[event]['kirjeldus']
+        App.get_running_app().root.ids.varv.color = data[event]['varv']
         self.currentevent = event
 
 
