@@ -1,9 +1,9 @@
 {
   "template": {
-    "aasta": "2022",
+    "aasta": "2000",
     "ekr": false,
-    "kuu": "06",
-    "paev": "07",
+    "kuu": "01",
+    "paev": "01",
     "kirjeldus": "",
     "varv": [
       1.0,
@@ -12,76 +12,11 @@
       1
     ]
   },
-  "uusevent1": {
-    "aasta": "2022",
+  "minuevent": {
+    "aasta": "2000",
     "ekr": false,
-    "kuu": "06",
-    "paev": "07",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "uusevent2": {
-    "aasta": "2022",
-    "ekr": false,
-    "kuu": "12",
-    "paev": "07",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "uusevent3": {
-    "aasta": "2022",
-    "ekr": false,
-    "kuu": "11",
-    "paev": "07",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "uusevent4": {
-    "aasta": "2022",
-    "ekr": false,
-    "kuu": "10",
-    "paev": "07",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "uusevent5": {
-    "aasta": "2022",
-    "ekr": false,
-    "kuu": "09",
-    "paev": "07",
-    "kirjeldus": "",
-    "varv": [
-      1.0,
-      1.0,
-      1.0,
-      1
-    ]
-  },
-  "uusevent6": {
-    "aasta": "2022",
-    "ekr": false,
-    "kuu": "05",
-    "paev": "07",
+    "kuu": "01",
+    "paev": "01",
     "kirjeldus": "",
     "varv": [
       1.0,
